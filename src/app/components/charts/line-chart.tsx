@@ -2,6 +2,8 @@
 import * as React from 'react';
 import { LineChart } from '@mui/x-charts/LineChart';
 import { Card, CardContent, useMediaQuery, useTheme } from '@mui/material';
+import { useState } from 'react';
+import useResizeObserver from '../resize';
 
 const months = [
   new Date(1990, 0, 1),
@@ -36,9 +38,20 @@ export default function StackedAreas() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('lg'));
   const isExtraLargeScreen = useMediaQuery(theme.breakpoints.up('xl'));
+
+  const [dimensions, setDimensions] = useState({ width: 600, height: 400 });
+
+  const [setRef] = useResizeObserver((entry) => {
+    setDimensions({
+      width: entry.contentRect.width,
+      height: entry.contentRect.height,
+    });
+  });
   
   return (
-    <Card sx={{ 
+    <Card 
+    ref={setRef}
+    sx={{ 
       borderRadius: 2, 
       p: 2, 
       minWidth: 150, 
@@ -74,8 +87,8 @@ export default function StackedAreas() {
             showMark: false,
           },
         ]}
-        width={600}
-        height={400}
+        width={dimensions.width}
+        height={dimensions.height}
         margin={{ left: 70 }}
       />
       </CardContent>

@@ -5,6 +5,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import SimCardIcon from '@mui/icons-material/SimCard';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
 import NextLink from "next/link";
 import { usePathname } from 'next/navigation';
 import React from 'react';
@@ -14,7 +16,9 @@ interface LinkProps {
 }
 
 const links = [
-    { name: 'Dashboard', href: '/pages/Dashboard', icon: CategoryIcon},
+    { name: 'Dashboard', href: '/pages/Dashboard', icon: EqualizerIcon},
+    { name: 'Services', href: '/pages/Dashboard/Services', icon: CategoryIcon},
+    { name: 'Lines', href: '/pages/Dashboard/Lines', icon: SimCardIcon},
     { name: 'Settings', href: '/pages/Dashboard/Settings', icon: SettingsIcon}
 ]
 
@@ -24,6 +28,7 @@ export default function NavLinks(
     }: LinkProps
 ){
     const pathname = usePathname();
+    
     return(
         <>
             {links.map((link) => (
@@ -34,6 +39,10 @@ export default function NavLinks(
                       minHeight: 48,
                       justifyContent: open ? 'initial' : 'center',
                       px: 2.5,
+                      backgroundColor: pathname === link.href ? 'rgba(0, 0, 0, 0.08)' : 'inherit',
+                                '&:hover': {
+                                    backgroundColor: pathname === link.href ? 'rgba(0, 0, 0, 0.08)' : 'rgba(0, 0, 0, 0.04)',
+                                },
                     }}
                   >
                     <ListItemIcon
