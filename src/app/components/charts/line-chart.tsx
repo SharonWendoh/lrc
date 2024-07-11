@@ -71,20 +71,22 @@ export default function StackedAreas() {
         ]}
         series={[
           {
-            id: 'Successful',
-            label: 'Successful',
-            data: Successful,
-            stack: 'total',
-            area: true,
-            showMark: false,
-          },
-          {
             id: 'Failed',
             label: 'Failed',
             data: Failed,
             stack: 'total',
             area: true,
             showMark: false,
+            color: '#fee0e0'
+          },
+          {
+            id: 'Successful',
+            label: 'Successful',
+            data: Successful,
+            stack: 'total',
+            area: true,
+            showMark: false,
+            color: '#c8eecd'
           },
         ]}
         width={dimensions.width}

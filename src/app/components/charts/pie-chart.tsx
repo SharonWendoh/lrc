@@ -4,12 +4,12 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import { Card, CardContent, useMediaQuery, useTheme } from '@mui/material';
 
 const data = [
-  { id: 0, value: 10, label: 'Pooled' },
-  { id: 1, value: 15, label: 'Queued' },
-  { id: 2, value: 20, label: 'Completed' },
-  { id: 3, value: 10, label: 'Success' },
-  { id: 4, value: 15, label: 'Retried' },
-  { id: 5, value: 20, label: 'Failed' },
+  { id: 0, value: 10, label: 'Pooled', color: '#175c33' },
+  { id: 1, value: 15, label: 'Queued', color: '#cbeecd' },
+  { id: 2, value: 20, label: 'Completed', color: '#63bb71' },
+  { id: 3, value: 10, label: 'Success', color: '#2c9a48' },
+  { id: 4, value: 15, label: 'Retried', color: '#258b43' },
+  { id: 5, value: 20, label: 'Failed', color: '#1f6935' },
 ];
 
 export default function PieActiveArc() {
@@ -30,7 +30,11 @@ export default function PieActiveArc() {
             <PieChart
             series={[
                 {
-                data,
+                  data: data.map(item => ({
+                    ...item,
+                    color: item.color, // Use the color specified in data
+                })),
+                color: '#175c33',
                 highlightScope: { faded: 'global', highlighted: 'item' },
                 faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
                 },

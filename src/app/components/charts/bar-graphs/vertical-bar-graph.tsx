@@ -66,11 +66,13 @@ export default function VerticalBars() {
             dataKey: 'normal',
             stack: 'lines',
             label: 'Normal lines',
+            color: '#175c33'
           },
           {
             dataKey: 'accelerated',
             stack: 'lines',
             label: 'Accelerated lines',
+            color: '#63bb71'
           },
         ]}
         // width={600}

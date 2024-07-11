@@ -7,12 +7,12 @@ import useResizeObserver from '../../resize';
 
 // Define the mock dataset
 const mockDataset = [
-  { system: 'CBS', lines: 500 },
-  { system: 'CSDB', lines: 600 },
-  { system: 'M-PESA', lines: 800 },
-  { system: 'CRM', lines: 700 },
-  { system: 'SDP', lines: 900 },
-  { system: 'LIPA MDOGO MDOGO', lines: 850 },
+  { system: 'CBS', normal: 300, accelerated: 200 },
+  { system: 'CSDB', normal: 400, accelerated: 200 },
+  { system: 'M-PESA', normal: 500, accelerated: 300 },
+  { system: 'CRM', normal: 400, accelerated: 300 },
+  { system: 'SDP', normal: 600, accelerated: 300 },
+  { system: 'LIPA MDOGO MDOGO', normal: 500, accelerated: 350 },
 ];
 
 const chartSetting = {
@@ -53,15 +53,41 @@ export default function HorizontalBars() {
       mx: isSmallScreen ? 1 : 'auto'
       }} >
       <CardContent>
-        <BarChart
-            dataset={mockDataset}
-            yAxis={[{ scaleType: 'band', dataKey: 'system' }]}
-            series={[{ dataKey: 'lines', label: 'Number of Lines', valueFormatter }]}
-            layout="horizontal"
-            width={dimensions.width}
-            height={dimensions.height}
-            {...chartSetting}
-          />
+      <BarChart
+        dataset={mockDataset}
+        yAxis={[
+          {
+            scaleType: 'band',
+            dataKey: 'system',
+            label: 'Systems',
+          },
+        ]}
+        xAxis={[
+          {
+            label: 'Number of lines',
+          },
+        ]}
+        series={[
+          {
+            dataKey: 'normal',
+            stack: 'lines',
+            label: 'Normal lines',
+            color: '#175c33'
+          },
+          {
+            dataKey: 'accelerated',
+            stack: 'lines',
+            label: 'Accelerated lines',
+            color: '#63bb71'
+          },
+        ]}
+        // width={600}
+        // height={350}
+        // layout="vertical"
+        width={dimensions.width}
+          height={dimensions.height}
+          layout="horizontal"
+      />
       </CardContent>
     </Card>
   );
